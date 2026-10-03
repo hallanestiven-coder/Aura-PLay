@@ -10,7 +10,6 @@ const songTitle = document.getElementById('song-title');
 const songArtist = document.getElementById('song-artist');
 const currentTimeEl = document.getElementById('current-time');
 const durationEl = document.getElementById('duration');
-const albumCover = document.getElementById('album-cover');
 const selectFolderBtn = document.getElementById('select-folder-btn');
 const navButtons = document.querySelectorAll('.nav-btn');
 const pages = document.querySelectorAll('.page');
@@ -132,7 +131,8 @@ function loadSong(index) {
   const song = playlist[index];
   audioPlayer.src = `file://${song.path}`;
   songTitle.textContent = song.name || song.filename;
-  songArtist.textContent = 'From: ' + musicFolder.split('\\').pop();
+  const folderName = musicFolder.split(/[\\\/]/).pop();
+  songArtist.textContent = 'From: ' + folderName;
   progressBar.value = 0;
   updatePlaylistUI();
   updateLibraryUI();
